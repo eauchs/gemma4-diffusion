@@ -1,10 +1,10 @@
 # gemma4-diffusion
 
 Rigorous Apple Silicon benchmark: **does DiffusionGemma's block-diffusion decode
-speedup actually materialize on an M3 Max — or does the "compute-bound" design
+speedup actually materialize on an M3 Max, or does the "compute-bound" design
 backfire on compute-poor hardware?**
 
-**TL;DR — it backfires.** At 4-bit on M3 Max, the diffusion path is ~3× slower than
+**TL;DR: it backfires.** At 4-bit on M3 Max, the diffusion path is ~3× slower than
 autoregressive on average (up to ~5× on long-form) and uses more memory. Adaptive
 compute is real (denoising steps scale 3→113 with prompt complexity) but it's a
 liability here: each step is a full-canvas forward that M3 Max compute can't hide.
